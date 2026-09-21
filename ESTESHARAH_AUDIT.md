@@ -25,3 +25,26 @@
    `/doctor/inbox` بالـ Firestore (المرحلة القادمة في مستودع Rochetta).
 
 *نهاية جولة 1.*
+
+---
+
+## 2. جولة 2 — استضافة GitHub Pages مؤقتة (2026-09-21)
+
+| الميزة | الحالة |
+|---|---|
+| المستودع العام `drahmedyousefmd-prog/estesharah` (main `398efca…` — شِمال `da056ec` أول جولة) | OK |
+| **بناء مؤقت بنطاق فرعي**: `basePath`/`assetPrefix = "/estesharah"` في `next.config.ts` حتى قدوم النطاق الخاص؛ كل الأصول والروابط مسبوقة (`/estesharah/_next/…`، `/estesharah/tickets`…) مع فحص المخرجات | OK |
+| `SITE_URL` → `https://drahmedyousefmd-prog.github.io/estesharah` (مرجع meta/OG/sitemap مؤقت) — مع تعليق يوضح الإزالة عند النطاق النهائي | OK |
+| سكربت نشر `scripts/deploy.ps1` (نمط روشتة: build → تقليم RSC .txt → مزامنة `out/` → فرض فرع `gh-pages`) مع نسخة عمل مؤقتة `opencode/estesharah-pages` (هوية git محلية) | OK |
+| فرع `gh-pages` مبني (`2eeb44a`) وPages مفعّلة (project site) URL: `https://drahmedyousefmd-prog.github.io/estesharah/` | OK |
+| المراجعة الحية للموقع المنشور | لاحقًا بعد إتمام البناء (R1) |
+
+**ملاحظات هذا الطور:**
+- الرابط «أنا طبيب — تسجيل الدخول» في أسفل الرئيسية يستهدف `DOCTOR_SITE_URL/login`
+  وهو دومين روشتة وليس المقصود — يجب فحصه حيًا؛ إن فشل الرجوع إلى نطاق استشارة الفرعي
+  (لا يوجد مسار `/login` على دومين روشتة) فهو سلوك متعمد: الطبيب يفتح `/login` من دومين
+  روشتة مباشرة، بينما المريض في استشارة.
+- عند قيام النطاق الخاص: احذف `basePath`/`assetPrefix` من `next.config.ts`، وعدّل
+  `SITE_URL`، وأعد النشر. مسار GitHub Pages الفرعي يُهمل.
+
+*نهاية جولة 2.*

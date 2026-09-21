@@ -6,7 +6,9 @@ and track your tickets. Arabic-first (`lang="ar"`, `dir="rtl"`), static, free to
 host. **No medical/reference content here** — this site is deliberately separate
 from the doctor site (Rochetta).
 
-- Patient flows are guest-first (no sign-up required to request).
+- **Live (temporary GitHub Pages preview):** https://drahmedyousefmd-prog.github.io/estesharah/ — pending the custom domain. While hosted as a Pages *project* site the build uses `basePath/assetPrefix: "/estesharah"`; when the custom domain lands, remove both from `next.config.ts` and set the real `SITE_URL` in `src/lib/site.ts`.
+
+Patient flows are guest-first (no sign-up required to request).
 - A shared Firebase Firestore (once configured in `src/lib/firebase/config.ts`)
   syncs tickets + chat to the doctor's inbox in real time. Until then the site
   works on localStorage only (demo mode) — see `FIREBASE_SETUP.md`.
