@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PortalLogin } from "@/components/login/PortalLogin";
 
 export const metadata: Metadata = {
-  title: "اختر بوابتك — Rochetta",
+  title: "حسابي",
   alternates: { canonical: "/login" },
   robots: { index: false },
 };

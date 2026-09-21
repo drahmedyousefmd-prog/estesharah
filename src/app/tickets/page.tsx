@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PatientTicketsApp } from "@/components/patient/PatientTicketsApp";
 
 export const metadata: Metadata = {
-  title: "تذاكري — استشارة",
+  title: "تذاكري",
   robots: { index: false },
   alternates: { canonical: "/tickets" },
 };
