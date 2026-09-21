@@ -8,8 +8,11 @@
  * (Rochetta) where the /import page lives.
  */
 
-/** Public URL of this patient site (TODO: set to the real custom domain). */
-export const SITE_URL = "https://estesharah.example";
+/** Public URL of this patient site — CURRENTLY the temporary GitHub Pages
+ *  project URL (preview until a custom domain is chosen). Once the custom
+ *  domain is live, remove basePath/assetPrefix from next.config.ts and set
+ *  this to the real domain. */
+export const SITE_URL = "https://drahmedyousefmd-prog.github.io/estesharah";
 
 /** Doctor site (Rochetta) — hosts the /import link that lands tickets in the inbox. */
 export const DOCTOR_SITE_URL = "https://drahmedyousefmd-prog.github.io";
