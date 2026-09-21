@@ -1,0 +1,135 @@
+/**
+ * Rochetta design tokens.
+ * Single source of truth for color, typography, spacing, radius,
+ * elevation, and motion. Tailwind v4 `@theme` values are exposed both
+ * as CSS custom properties (usable via `var(--token)` anywhere) and as
+ * Tailwind utilities (e.g. `bg-brand`).
+ */
+
+@theme {
+  /* Breakpoints — mobile-first; lg is the desktop/tablet split */
+  --breakpoint-lg: 900px;
+  --breakpoint-xl: 1100px;
+
+  /* Fonts */
+  --font-heading: var(--font-cairo), "Segoe UI", Tahoma, "Noto Kufi Arabic", sans-serif;
+  --font-body: var(--font-tajawal), "Segoe UI", Tahoma, Arial, sans-serif;
+  --font-latin: var(--font-inter), "Segoe UI", Arial, sans-serif;
+
+  /* Brand palette — mirrors the reference (assets/css/design-tokens.css) */
+  --color-brand: #1ba39c;
+  --color-brand-dark: #14837d;
+  --color-brand-tint: #e3f5f3;
+}
+
+:root {
+  /* Neutral base — sourced from the reference design tokens */
+  --bg: #eaf6f8;
+  --surface: #ffffff;
+  --surface-raised: #f6fbfc;
+  --border: #dceef0;
+  --text-primary: #16323a;
+  --text-secondary: #5c7378;
+  /* #8fa3a7 alone fails AA on white (~3.2:1) — darken via a muted/heading mix. */
+  --text-muted: color-mix(in srgb, #8fa3a7 45%, #16323a);
+
+  /* Brand — reference CarePlus turquoise */
+  --brand: #1ba39c;
+  --brand-dark: #14837d;
+  --brand-tint: #e3f5f3;
+
+  /* Category semantic colors — quiet tints, not loud fills */
+  --cat-psychiatry: #6e5db3;
+  --cat-pain-analgesics: #c1652b;
+  --cat-antibiotics: #7a8c3f;
+  --cat-dermatology: #b4736a;
+  --cat-cardiovascular: #b23b3b;
+  --cat-urinary: #6b5b73;
+  --cat-respiratory: #3e7ea6;
+  --cat-git: #4a8b7c;
+  --cat-others: #6b6b6b;
+
+  /* Drug status */
+  --status-safe: #3e8e5a;
+  --status-warning: #c48a1f;
+  --status-danger: #b23b3b;
+
+  /* Case-detail tab accents (clinical / rx / interactions) */
+  --tab-clinical: #3e7ea6;
+  --tab-rx: #4a8b7c;
+  --tab-warning: #8a6d3b;
+
+  /* Mode-aware accent — interactive controls only.
+     Doctor = brand turquoise; Patient = reference accent #2d9cdb. */
+  --patient-accent: var(--color-accent);
+  --accent: var(--brand);
+  --accent-dark: var(--brand-dark);
+
+  /* Radius — reference values */
+  --radius-sm: 8px;
+  --radius-md: var(--radius-input);
+  --radius-lg: var(--radius-card);
+
+  /* Elevation — reference shadows */
+  --shadow-1: var(--shadow-soft);
+  --shadow-2: var(--shadow-float);
+  --shadow-3: 0 -12px 40px rgba(20, 20, 15, 0.18), 0 12px 32px rgba(20, 20, 15, 0.14);
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
+  --dur-slow: 300ms;
+}
+
+/* Patient mode swaps the interactive accent only */
+[data-mode="patient"] {
+  --accent: var(--patient-accent);
+  --accent-dark: color-mix(in srgb, var(--patient-accent) 82%, #000);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    line-height: 1.3;
+  }
+
+  .font-ar {
+    font-family: var(--font-body);
+  }
+
+  .font-en {
+    font-family: var(--font-latin);
+    letter-spacing: -0.01em;
+  }
+
+  /* Consistent, visible keyboard focus */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--brand-tint);
+    color: var(--brand-dark);
+  }
+}

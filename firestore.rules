@@ -1,0 +1,46 @@
+rules_version = '2';
+
+// Firestore rules for the SHARED database (patient site "استشارة" writes,
+// doctor site "Rochetta /doctor/inbox" reads + replies).
+
+// Doctor identity: an Entry in `admin/doctors/{uid}` proves the Firebase
+// auth user is the trusted doctor. Create these entries manually in the
+// console after enabling Firebase Auth (one entry per doctor-account uid).
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isDoctor() {
+      return request.auth != null
+        && get(/databases/$(database)/documents/admin/doctors/$(request.auth.uid)).exists;
+    }
+
+    // The patient owner of a ticket: anonymous-uid (owner_uid) or guest token.
+    function isOwner() {
+      return request.auth != null
+        && (resource.data.owner_uid == request.auth.uid
+            || resource.data.guest_token == request.auth.token.guest_token);
+    }
+
+    match /tickets/{ticketId} {
+      allow create: if request.auth != null;
+      allow read: if isDoctor() || isOwner();
+      allow update: if isDoctor() || isOwner();
+      allow delete: if isDoctor();
+    }
+
+    match /tickets/{ticketId}/messages/{messageId} {
+      // A patient may write to their own thread only.
+      allow read, create:
+        if isDoctor()
+        || (request.auth != null
+            && get(/databases/$(database)/documents/tickets/$(ticketId)).data.owner_uid == request.auth.uid);
+      allow update, delete: if isDoctor();
+    }
+
+    match /admin/{collection}/{uid} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+  }
+}
