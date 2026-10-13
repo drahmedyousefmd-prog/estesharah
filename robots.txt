@@ -1,4 +1,8 @@
 User-Agent: *
 Allow: /
+Disallow: /ticket/
+Disallow: /doctor/
+Disallow: /my-requests
+Disallow: /login
 
 Sitemap: https://drahmedyousefmd-prog.github.io/estesharah/sitemap.xml

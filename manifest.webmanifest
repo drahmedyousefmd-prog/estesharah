@@ -1,5 +1,5 @@
 {
-  "name": "استشارة — تواصل مع طبيبك",
+  "name": "استشارة — استشارات طبية",
   "short_name": "استشارة",
   "description": "بوابتك الآمنة للتواصل مع الطبيب: استشارة طبية، قراءة تحاليل، مراجعة روشتة، رسم قلب، نظام غذائي وخطة علاجية.",
   "start_url": "/",
@@ -7,8 +7,8 @@
   "display": "standalone",
   "dir": "rtl",
   "lang": "ar",
-  "background_color": "#f7f5f1",
-  "theme_color": "#2d9cdb",
+  "background_color": "#fdf6fa",
+  "theme_color": "#ec4899",
   "icons": [
     {
       "src": "/app-icon-192.png",
